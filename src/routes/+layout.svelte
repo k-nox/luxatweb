@@ -40,7 +40,16 @@
 
 <div>
 	<header>
-		<ThemeDropdown {theme} {setTheme} />
+		<div class="px-4">
+			<div class="flex h-20 items-center justify-between">
+				<div>lux@web</div>
+				<div>
+					<ThemeDropdown {theme} {setTheme} />
+				</div>
+			</div>
+		</div>
 	</header>
-	{@render children()}
+	<div class="h-[calc(100vh-80px)]">
+		{@render children()}
+	</div>
 </div>
