@@ -2,19 +2,22 @@
 	import '../app.css';
 	import { browser } from '$app/environment';
 	import { MediaQuery } from 'svelte/reactivity';
-	import { DropdownMenu } from 'bits-ui';
-	import { Sun, Moon } from 'lucide-svelte/icons';
+	import ThemeDropdown from './theme-dropdown.svelte';
+	import type { Theme, ThemeChoice } from './theme';
 
 	const getTheme = () => {
-		if (browser && 'theme' in localStorage) {
-			return localStorage.getItem('theme');
+		if (browser) {
+			const theme = localStorage.getItem('theme');
+			if (theme !== null && (theme === 'light' || theme === 'dark')) {
+				return theme;
+			}
 		}
 		return new MediaQuery('prefers-color-scheme: dark', true).current ? 'dark' : 'light';
 	};
 
-	let theme = $state(getTheme());
+	let theme: Theme = $state(getTheme());
 
-	const setTheme = (choice: 'light' | 'dark' | 'system') => {
+	const setTheme = (choice: ThemeChoice) => {
 		if (choice === 'system') {
 			localStorage.removeItem('theme');
 		} else {
@@ -23,28 +26,21 @@
 		theme = getTheme();
 	};
 
+	$effect(() => {
+		if (browser) {
+			const html = document.getElementsByTagName('html')[0];
+			if (html.getAttribute('data-theme') !== theme) {
+				html.setAttribute('data-theme', theme);
+			}
+		}
+	});
+
 	let { children } = $props();
 </script>
 
-<div class="bg-dawn-base dark:bg-moon-base text-dawn-text dark:text-moon-text" data-theme={theme}>
+<div>
 	<header>
-		<!-- <button onclick={() => (theme = theme === 'dark' ? 'light' : 'dark')}>switch theme</button> -->
-		<DropdownMenu.Root>
-			<DropdownMenu.Trigger>
-				{#if theme === 'light'}
-					<Sun />
-				{:else}
-					<Moon />
-				{/if}
-			</DropdownMenu.Trigger>
-			<DropdownMenu.Portal>
-				<DropdownMenu.Content>
-					<DropdownMenu.Item onSelect={() => setTheme('dark')}>dark</DropdownMenu.Item>
-					<DropdownMenu.Item onSelect={() => setTheme('light')}>light</DropdownMenu.Item>
-					<DropdownMenu.Item onSelect={() => setTheme('system')}>system</DropdownMenu.Item>
-				</DropdownMenu.Content>
-			</DropdownMenu.Portal>
-		</DropdownMenu.Root>
+		<ThemeDropdown {theme} {setTheme} />
 	</header>
 	{@render children()}
 </div>
