@@ -28,10 +28,7 @@
 
 	$effect(() => {
 		if (browser) {
-			const html = document.getElementsByTagName('html')[0];
-			if (html.getAttribute('data-theme') !== theme) {
-				html.setAttribute('data-theme', theme);
-			}
+			document.documentElement.classList.toggle('dark', theme === 'dark');
 		}
 	});
 
