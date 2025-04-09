@@ -5,25 +5,26 @@
 	import ThemeDropdown from './theme-dropdown.svelte';
 	import type { Theme, ThemeChoice } from './theme';
 
-	const getTheme = () => {
+	const systemPrefersDark = new MediaQuery('prefers-color-scheme: dark', true);
+
+	let theme: Theme = $derived.by(() => {
 		if (browser) {
 			const theme = localStorage.getItem('theme');
 			if (theme !== null && (theme === 'light' || theme === 'dark')) {
 				return theme;
 			}
 		}
-		return new MediaQuery('prefers-color-scheme: dark', true).current ? 'dark' : 'light';
-	};
-
-	let theme: Theme = $state(getTheme());
+		return systemPrefersDark.current ? 'dark' : 'light';
+	});
 
 	const setTheme = (choice: ThemeChoice) => {
 		if (choice === 'system') {
 			localStorage.removeItem('theme');
+			theme = systemPrefersDark.current ? 'dark' : 'light';
 		} else {
 			localStorage.setItem('theme', choice);
+			theme = choice;
 		}
-		theme = getTheme();
 	};
 
 	$effect(() => {
