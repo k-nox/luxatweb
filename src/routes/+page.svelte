@@ -1,4 +1,16 @@
-<div class="-mb-20 flex h-full flex-col items-center justify-center">
+<script lang="ts">
+	import AnimatedLink from '$lib/components/animated-link.svelte';
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
+</script>
+
+<div class="flex h-full flex-col items-center justify-center text-center">
 	<h1 class="text-8xl/snug">hi, i'm lux</h1>
 	<p class="text-lg/snug">a software engineer, occassional poet, and communication nerd</p>
+	<div class="flex justify-evenly gap-4">
+		{#each data.links as { url, text } (url + text)}
+			<AnimatedLink {url} {text} />
+		{/each}
+	</div>
 </div>

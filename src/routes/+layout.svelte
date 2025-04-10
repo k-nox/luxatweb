@@ -2,8 +2,11 @@
 	import '../app.css';
 	import { browser } from '$app/environment';
 	import { MediaQuery } from 'svelte/reactivity';
-	import ThemeDropdown from './theme-dropdown.svelte';
-	import type { Theme, ThemeChoice } from './theme';
+	import ThemeDropdown from '$lib/components/theme-dropdown.svelte';
+	import type { Theme, ThemeChoice } from '$lib/types';
+	import type { LayoutProps } from './$types';
+	import AnimatedLink from '$lib/components/animated-link.svelte';
+	import { page } from '$app/state';
 
 	const systemPrefersDark = new MediaQuery('prefers-color-scheme: dark', true);
 
@@ -33,17 +36,24 @@
 		}
 	});
 
-	let { children } = $props();
+	let isHomePage = $derived(page.route?.id === '/');
+
+	let { data, children }: LayoutProps = $props();
 </script>
 
-<div>
+<div class="px-4">
 	<header>
-		<div class="px-4">
-			<div class="flex h-20 items-center justify-between">
-				<div>lux@web</div>
-				<div>
-					<ThemeDropdown {theme} {setTheme} />
-				</div>
+		<div class="flex h-20 items-center justify-between">
+			<AnimatedLink url="/" text="lux@web" />
+			<div class="flex items-center gap-2">
+				{#if !isHomePage}
+					<nav class="flex gap-4">
+						{#each data.links as { url, text } (url + text)}
+							<AnimatedLink {url} {text} />
+						{/each}
+					</nav>
+				{/if}
+				<ThemeDropdown {theme} {setTheme} />
 			</div>
 		</div>
 	</header>

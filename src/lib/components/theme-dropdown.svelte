@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { DropdownMenu } from 'bits-ui';
-	import type { Theme, ThemeChoice } from './theme';
+	import type { Theme, ThemeChoice } from '$lib/types';
 	import { Moon, Sun } from 'lucide-svelte';
 	import { fly } from 'svelte/transition';
 
@@ -21,12 +21,12 @@
 
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger
-		class="text-text hover:bg-overlay inline-flex h-10 w-10 items-center justify-center rounded-md select-none active:scale-[0.98]"
+		class="hover:bg-overlay inline-flex h-10 w-10 items-center justify-center rounded-md select-none active:scale-[0.98]"
 	>
 		{#if theme === 'light'}
-			<Sun class="h-6 w-6" />
+			<Sun class="text-gold h-6 w-6" />
 		{:else}
-			<Moon class="h-6 w-6" />
+			<Moon class="text-iris h-6 w-6" />
 		{/if}
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Portal>
