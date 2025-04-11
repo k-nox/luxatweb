@@ -8,7 +8,7 @@
 </svelte:head>
 
 <div class="m-auto h-full text-lg/relaxed" in:fade>
-	<h1 class="text-4xl/relaxed font-bold">about me</h1>
+	<h1 class="text-iris text-4xl/relaxed font-bold">about me</h1>
 	<p class="pt-4">
 		Hi! I'm Lux Barker (they/them). I'm a software developer with experience developing high-volume
 		APIs in Go and Node.js. Recently, I've been expanding my skills into the front-end with Svelte
