@@ -5,9 +5,13 @@
 	let { data }: PageProps = $props();
 </script>
 
-<div class="flex h-full flex-col items-center justify-center text-center">
-	<h1 class="text-8xl/snug">hi, i'm lux</h1>
-	<p class="text-lg/snug">a software engineer, occassional poet, and communication nerd</p>
+<svelte:head>
+	<title>lux@web</title>
+</svelte:head>
+
+<div class="flex h-full flex-col items-center justify-center text-center text-lg/loose">
+	<h1 class="bol text-8xl/snug">hi, i'm lux</h1>
+	<p class="">a software engineer, occassional poet, and communication nerd</p>
 	<div class="flex justify-evenly gap-4">
 		{#each data.links as { url, text } (url + text)}
 			<AnimatedLink {url} {text} />
