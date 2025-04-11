@@ -8,6 +8,10 @@ export const load: LayoutLoad = () => {
 				text: 'about'
 			},
 			{
+				url: '/projects',
+				text: 'projects'
+			},
+			{
 				url: 'https://www.linkedin.com/in/lux-barker',
 				text: 'linkedin'
 			},
