@@ -16,7 +16,7 @@
 	</p>
 
 	<p class="pt-4">
-		Take a look at my <AnimatedLink url="/projects" text="projects" /> if you're interested in seeing
+		Take a look at my <AnimatedLink href="/projects" text="projects" /> if you're interested in seeing
 		examples of my work.
 	</p>
 </div>

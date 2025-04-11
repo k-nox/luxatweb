@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Theme, ThemeChoice } from '$lib/types';
+	import type { DropdownItem, Theme, ThemeChoice } from '$lib/types';
 	import { Moon, Sun } from 'lucide-svelte';
 	import IconDropdown from './icon-dropdown.svelte';
 
@@ -10,18 +10,21 @@
 
 	let { theme, setTheme }: Props = $props();
 
-	let items = [
+	let items: DropdownItem[] = [
 		{
 			onSelect: () => setTheme('dark'),
-			text: 'dark'
+			text: 'dark',
+			type: 'button'
 		},
 		{
 			onSelect: () => setTheme('light'),
-			text: 'light'
+			text: 'light',
+			type: 'button'
 		},
 		{
 			onSelect: () => setTheme('system'),
-			text: 'system'
+			text: 'system',
+			type: 'button'
 		}
 	];
 </script>

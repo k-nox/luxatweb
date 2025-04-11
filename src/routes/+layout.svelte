@@ -3,11 +3,13 @@
 	import { browser } from '$app/environment';
 	import { MediaQuery } from 'svelte/reactivity';
 	import ThemeDropdown from '$lib/components/theme-dropdown.svelte';
-	import type { Theme, ThemeChoice } from '$lib/types';
+	import type { DropdownItem, Theme, ThemeChoice } from '$lib/types';
 	import type { LayoutProps } from './$types';
 	import AnimatedLink from '$lib/components/animated-link.svelte';
 	import { page } from '$app/state';
 	import { fade } from 'svelte/transition';
+	import { Menu } from 'lucide-svelte';
+	import IconDropdown from '$lib/components/icon-dropdown.svelte';
 
 	const systemPrefersDark = new MediaQuery('prefers-color-scheme: dark', true);
 
@@ -40,24 +42,36 @@
 	let isHomePage = $derived(page.route?.id === '/');
 
 	let { data, children }: LayoutProps = $props();
+	let navItems: DropdownItem[] = $derived(data.links.map((item) => ({ ...item, type: 'anchor' })));
 </script>
 
 {#snippet nav()}
-	<nav class="flex flex-wrap justify-evenly gap-4" in:fade>
-		{#each data.links as { url, text } (url + text)}
-			<AnimatedLink {url} {text} />
+	<nav class="hidden sm:flex sm:flex-wrap sm:justify-evenly sm:gap-4" in:fade>
+		{#each data.links as { href, text } (href + text)}
+			<AnimatedLink {href} {text} />
 		{/each}
 	</nav>
+{/snippet}
+
+{#snippet mobileNav()}
+	<span class="sm:hidden">
+		<IconDropdown items={navItems}>
+			{#snippet icon()}
+				<Menu class="h-6 w-6" />
+			{/snippet}
+		</IconDropdown>
+	</span>
 {/snippet}
 
 <div class="px-4">
 	<header>
 		<div class="flex h-20 items-center justify-between">
-			<AnimatedLink url="/" text="lux@web" />
+			<AnimatedLink href="/" text="lux@web" />
 			<div class="flex items-center gap-2">
 				{#if !isHomePage}
 					{@render nav()}
 				{/if}
+				{@render mobileNav()}
 				<ThemeDropdown {theme} {setTheme} />
 			</div>
 		</div>

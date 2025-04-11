@@ -4,23 +4,23 @@ export const load: LayoutLoad = () => {
 	return {
 		links: [
 			{
-				url: '/about',
+				href: '/about',
 				text: 'about'
 			},
 			{
-				url: '/projects',
+				href: '/projects',
 				text: 'projects'
 			},
 			{
-				url: 'https://blog.luxatweb.dev',
+				href: 'https://blog.luxatweb.dev',
 				text: 'posts'
 			},
 			{
-				url: 'https://www.linkedin.com/in/lux-barker',
+				href: 'https://www.linkedin.com/in/lux-barker',
 				text: 'linkedin'
 			},
 			{
-				url: 'https://github.com/k-nox',
+				href: 'https://github.com/k-nox',
 				text: 'github'
 			}
 		]
