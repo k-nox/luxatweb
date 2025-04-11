@@ -7,6 +7,12 @@
 	import type { LayoutProps } from './$types';
 	import AnimatedLink from '$lib/components/animated-link.svelte';
 	import { page } from '$app/state';
+	import { crossfade } from 'svelte/transition';
+	import { expoOut } from 'svelte/easing';
+
+	const [send, receive] = crossfade({
+		easing: expoOut
+	});
 
 	const systemPrefersDark = new MediaQuery('prefers-color-scheme: dark', true);
 
@@ -41,25 +47,37 @@
 	let { data, children }: LayoutProps = $props();
 </script>
 
+{#snippet nav()}
+	<nav class="flex justify-evenly gap-4" in:receive={{ key: 'nav' }} out:send={{ key: 'nav' }}>
+		{#each data.links as { url, text } (url + text)}
+			<AnimatedLink {url} {text} />
+		{/each}
+	</nav>
+{/snippet}
+
 <div class="px-4">
 	<header>
 		<div class="flex h-20 items-center justify-between">
 			<AnimatedLink url="/" text="lux@web" />
 			<div class="flex items-center gap-2">
 				{#if !isHomePage}
-					<nav class="flex gap-4">
-						{#each data.links as { url, text } (url + text)}
-							<AnimatedLink {url} {text} />
-						{/each}
-					</nav>
+					{@render nav()}
 				{/if}
 				<ThemeDropdown {theme} {setTheme} />
 			</div>
 		</div>
 	</header>
 	<div
-		class="m-auto h-[calc(100vh-80px)] w-full transition-[width] duration-500 ease-in-out sm:w-xl"
+		class={[
+			isHomePage && 'justify-center',
+			'm-auto flex h-[calc(100vh-80px)] w-full flex-col transition-[width] duration-500 ease-in-out sm:w-xl'
+		]}
 	>
-		{@render children()}
+		<div>
+			{@render children()}
+		</div>
+		{#if isHomePage}
+			{@render nav()}
+		{/if}
 	</div>
 </div>

@@ -12,6 +12,10 @@ export const load: LayoutLoad = () => {
 				text: 'projects'
 			},
 			{
+				url: 'https://blog.luxatweb.dev',
+				text: 'posts'
+			},
+			{
 				url: 'https://www.linkedin.com/in/lux-barker',
 				text: 'linkedin'
 			},
