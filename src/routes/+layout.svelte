@@ -7,12 +7,7 @@
 	import type { LayoutProps } from './$types';
 	import AnimatedLink from '$lib/components/animated-link.svelte';
 	import { page } from '$app/state';
-	import { crossfade } from 'svelte/transition';
-	import { expoOut } from 'svelte/easing';
-
-	const [send, receive] = crossfade({
-		easing: expoOut
-	});
+	import { fade } from 'svelte/transition';
 
 	const systemPrefersDark = new MediaQuery('prefers-color-scheme: dark', true);
 
@@ -48,7 +43,7 @@
 </script>
 
 {#snippet nav()}
-	<nav class="flex justify-evenly gap-4" in:receive={{ key: 'nav' }} out:send={{ key: 'nav' }}>
+	<nav class="flex justify-evenly gap-4" in:fade>
 		{#each data.links as { url, text } (url + text)}
 			<AnimatedLink {url} {text} />
 		{/each}

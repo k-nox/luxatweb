@@ -1,12 +1,13 @@
 <script>
 	import AnimatedLink from '$lib/components/animated-link.svelte';
+	import { fade } from 'svelte/transition';
 </script>
 
 <svelte:head>
 	<title>lux@web | about</title>
 </svelte:head>
 
-<div class="m-auto h-full text-lg/relaxed">
+<div class="m-auto h-full text-lg/relaxed" in:fade>
 	<h1 class="text-4xl/relaxed font-bold">about me</h1>
 	<p class="pt-4">
 		Hi! I'm Lux Barker (they/them). I'm a software developer with experience developing high-volume
