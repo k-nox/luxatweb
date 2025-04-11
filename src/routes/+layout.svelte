@@ -43,7 +43,7 @@
 </script>
 
 {#snippet nav()}
-	<nav class="flex justify-evenly gap-4" in:fade>
+	<nav class="flex flex-wrap justify-evenly gap-4" in:fade>
 		{#each data.links as { url, text } (url + text)}
 			<AnimatedLink {url} {text} />
 		{/each}
