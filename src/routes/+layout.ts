@@ -7,10 +7,10 @@ export const load: LayoutLoad = () => {
 				href: '/about',
 				text: 'about'
 			},
-			{
-				href: '/projects',
-				text: 'projects'
-			},
+			// {
+			// 	href: '/projects',
+			// 	text: 'projects'
+			// },
 			{
 				href: 'https://blog.luxatweb.dev',
 				text: 'posts'
