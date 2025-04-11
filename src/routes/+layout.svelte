@@ -57,7 +57,9 @@
 			</div>
 		</div>
 	</header>
-	<div class="h-[calc(100vh-80px)]">
+	<div
+		class="m-auto h-[calc(100vh-80px)] w-full transition-[width] duration-500 ease-in-out sm:w-xl"
+	>
 		{@render children()}
 	</div>
 </div>
