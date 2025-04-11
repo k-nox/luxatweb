@@ -63,7 +63,7 @@
 	</span>
 {/snippet}
 
-<div class="px-4">
+<div class="selection:bg-hlmed px-4">
 	<header>
 		<div class="flex h-20 items-center justify-between">
 			<AnimatedLink href="/" text="lux@web" />
