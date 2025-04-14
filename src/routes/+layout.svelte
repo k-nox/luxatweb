@@ -10,6 +10,7 @@
 	import { fade } from 'svelte/transition';
 	import { Menu } from 'lucide-svelte';
 	import IconDropdown from '$lib/components/icon-dropdown.svelte';
+	import RcScout from '$lib/components/rc-scout.svelte';
 
 	const systemPrefersDark = new MediaQuery('prefers-color-scheme: dark', true);
 
@@ -64,22 +65,20 @@
 {/snippet}
 
 <div class="selection:bg-hlmed px-4">
-	<header>
-		<div class="flex h-20 items-center justify-between">
-			<AnimatedLink href="/" text="lux@web" />
-			<div class="flex items-center gap-2">
-				{#if !isHomePage}
-					{@render nav()}
-				{/if}
-				{@render mobileNav()}
-				<ThemeDropdown {theme} {setTheme} />
-			</div>
+	<header class="flex h-20 items-center justify-between">
+		<AnimatedLink href="/" text="lux@web" />
+		<div class="flex items-center gap-2">
+			{#if !isHomePage}
+				{@render nav()}
+			{/if}
+			{@render mobileNav()}
+			<ThemeDropdown {theme} {setTheme} />
 		</div>
 	</header>
 	<div
 		class={[
 			isHomePage && 'justify-center',
-			'm-auto flex h-[calc(100vh-80px)] w-full flex-col transition-[width] duration-500 ease-in-out sm:w-xl'
+			'm-auto flex h-[calc(100vh-10rem)] w-full flex-col transition-[width] duration-500 ease-in-out sm:w-xl'
 		]}
 	>
 		<div>
@@ -89,4 +88,7 @@
 			{@render nav()}
 		{/if}
 	</div>
+	<footer class="flex h-20 items-center justify-center">
+		<RcScout />
+	</footer>
 </div>
