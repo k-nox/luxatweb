@@ -6,15 +6,17 @@
 
 	interface Props {
 		icon: Snippet;
+		triggerLabel: string;
 		items: DropdownItem[];
 	}
 
-	let { icon, items }: Props = $props();
+	let { icon, items, triggerLabel }: Props = $props();
 </script>
 
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger
 		class="hover:bg-overlay inline-flex h-11 w-11 items-center justify-center rounded-md select-none active:scale-[0.98]"
+		aria-label={triggerLabel}
 	>
 		{@render icon()}
 	</DropdownMenu.Trigger>

@@ -29,7 +29,7 @@
 	];
 </script>
 
-<IconDropdown {items}>
+<IconDropdown {items} triggerLabel="switch theme">
 	{#snippet icon()}
 		{#if theme === 'light'}
 			<Sun class="text-gold h-6 w-6" />

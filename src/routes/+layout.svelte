@@ -56,7 +56,7 @@
 
 {#snippet mobileNav()}
 	<span class="sm:hidden">
-		<IconDropdown items={navItems}>
+		<IconDropdown items={navItems} triggerLabel="navigation">
 			{#snippet icon()}
 				<Menu class="h-6 w-6" />
 			{/snippet}
