@@ -1,38 +1,29 @@
-# sv
+# lux@web
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This is the repository for my personal site, [luxatweb.dev](https://luxatweb.dev).
+I'm using [svelte/SvelteKit](https://svelte.dev) and [tailwindcss](https://tailwindcss.com) for this site.
+I'm also using the [Rose Pine Moon and Dawn palettes](https://rosepinetheme.com/palette/ingredients/) as color inspirations.
 
-## Creating a project
+## Development
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+- Install [pnpm](https://pnpm.io/installation) if not already installed
+- Run `pnpm install`
+- Run `pnpm run dev`
 
 ## Building
 
-To create a production version of your app:
+- Run `pnpm run build`
+- To check the build, run `pnpm run preview`
 
-```bash
-npm run build
-```
+## Deploy
 
-You can preview the production build with `npm run preview`.
+- lux@web is deployed on [fly.io](https://fly.io)
+- Run `fly auth` if not already authenticated
+- Run `fly deploy`
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## TODO
+
+- [ ] use github actions to deploy
+- [ ] use [mdsvex](https://github.com/pngwn/MDsveX) to render blog posts
+- [ ] reroute [blog.luxatweb.dev/posts](https://blog.luxatweb.dev/posts) to `luxatweb.dev/posts`
+- [ ] reroute [blog.luxatweb.dev/index.xml](https://blog.luxatweb.dev/index.xml) to `luxatweb.dev/index.xml`
