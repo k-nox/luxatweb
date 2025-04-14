@@ -20,7 +20,11 @@
 		</li>
 		<li>
 			<AnimatedLink text="creative coding" href="https://github.com/k-nox/creative-coding" /> - a collection
-			of simple creative coding exercises
+			of simple creative coding exercises.
+		</li>
+		<li>
+			<AnimatedLink text="lux@web" href="https://github.com/k-nox/luxatweb" /> - this website, created
+			with <AnimatedLink text="Svelte 5/SvelteKit" href="https://svelte.dev" />.
 		</li>
 	</ul>
 </div>
